@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sampleapp-deployment
+  namespace: agunuworld
   labels:
     app: sampleapp
 spec:
@@ -16,21 +17,22 @@ spec:
     spec:
       containers:
       - name: sampleapp
-        image: lerndevops/samplejavaapp:latest 
+        image: agunuworld/java-web-app:8 
         ports:
         - containerPort: 8080
 
 ---
-
+# Node Port Service
 apiVersion: v1
 kind: Service
 metadata:
-  name: sampleapp-service
+  name: sampleapp-service                  #service name varies it can be any name
+  namespace: agunuworld
 spec:
-  type: NodePort
+  type: LoadBalancer                                             #type of service and we have two types of services NodePortip and Notepod
   selector:
-    app: sampleapp
+     app: sampleapp                                  #this selector helps to identify the label created in the pod
   ports:
-  - protocol: TCP
-    port: 8080
-    nodePort: 32105
+  - port: 80                                                  #default
+    targetPort: 8080    #target application of the pod app
+    

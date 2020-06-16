@@ -1,0 +1,71 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: springapprc
+  namespace: jacocoworld5
+spec:
+  replicas: 5
+  selector:
+    app: springbootapp
+  template:
+    metadata:
+      name: springbootapppod
+      labels:
+        app: springbootapp
+    spec:
+      containers:
+        - name: springbootcontainer
+          image: dockerhandson/spring-boot-mongo
+          ports:
+           - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springappservice
+  namespace: jacocoworld5
+spec:
+  type: LoadBalancer
+  selector:
+     app: springbootapp
+  ports:
+  - port: 80
+    targetPort: 8080
+
+---
+# Mongo host path rc
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: mongo-controller
+  namespace: jacocoworld5
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: mongo
+    spec:
+      containers:
+      - image: mongo
+        name: mongo
+        ports:
+        - name: mongo
+          containerPort: 27017
+          hostPort: 27017
+          
+---
+# Mongo Node Port RC
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  namespace: jacocoworld5
+spec:
+  selector:
+      name: mongo
+  ports:
+    - port: 27017
+      targetPort: 27017
