@@ -258,3 +258,37 @@
   259  git status
   260  git push origin master
   261 kubectl delete cluster --name myclustername --region us-east-1
+
+                                          Helm
+  297  cd ..
+  298  ls
+  299  rm -rfm javawebapp
+  300  rm -rf javawebapp
+  301  clear
+  302  ls
+  303  rm -rf HelmChart
+  304  ls
+  305  clear
+  306  ls
+  307  helm list
+  308  helm uninstall javawebapp4
+  309  #how to add repo of helm
+  310  helm repo add mygithubchart https://agunuorganization.github.io/HelmChart/
+  311  helm repo ls
+  312  helm search repo mygithubchart
+  313  helm install mygithubchart/javawebapp jacocoworld
+  314  helm repo update
+  315  helm install mygithubchart/javawebapp --generate-name
+  316  clear
+  317  helm ls
+  318  kubectl get all
+  319  clear
+  320  ls
+  321  helm repo ls
+  322  ls mygithubchart
+  323  cd  mygithubchart
+  324  helm repo ls
+  325  helm search repo mygithubchart
+  326  ls mygithubchart/javawebapp
+  327  ls
+  328  cd educka
