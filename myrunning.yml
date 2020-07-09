@@ -292,3 +292,36 @@
   326  ls mygithubchart/javawebapp
   327  ls
   328  cd educka
+                                                  ADDDED
+   370  vi grafana.values
+  371  kubectl create ns monitoring
+  372  helm install grafana.yml grafana stable/grafana -n monitoring
+  373  helm install grafana grafana.yml  stable/grafana -n monitoring
+  374  helm install -f grafana.yml grafana stable/grafana -n monitoring
+  375  helm install -f grafana.values grafana stable/grafana -n monitoring
+  376  clear
+  377  helm list
+  378  helm list -n monitoring
+  379  kubectl get all -n monitorig
+  380  kubectl get all -n monitoring
+  381  ls
+  382  helm repo add mygithubchart https://agunuorganization.github.io/HelmChart/
+  383  lsclear
+  384  helm search repo stable
+  385  helm template stable/prometheus
+  386  ls
+  387  kubectl get all -n monitoring
+  388  clear
+  389  ls
+  390  kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.adminpassword}" | base64 --decode ; echo
+  391  docker exec -ti grafana grafana-cli admin reset-admin-password new_password
+  392  kubectl get all -n monitoring
+  393  kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.adminpassword}" | base64 --decode ; echo
+  394  kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.adminpassword}" | base64 --decode ; echoclear
+  395  clear
+  396  echo "Username: $(kubectl get secret grafana --namespace prometheus \
+                 --output=jsonpath='{.data.admin-user}' | base64 --decode)"
+  397  echo "Password: $(kubectl get secret grafana --namespace prometheus \
+                 --output=jsonpath='{.data.admin-password}' | base64 --decode)"
+  398  echo "Password: $(kubectl get secret grafana --namespace monitoring  --output=jsonpath='{.data.admin-password}' | base64 --decode)"
+  399  kubectl get all -n monitoring
